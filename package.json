@@ -1,0 +1,68 @@
+{
+  "name": "protractor-pom-generator",
+  "version": "0.0.1",
+  "description": "A small tool use for generating page object model for protractor.",
+  "dependencies": {
+    "argparse": "^1.0.10",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "jsdom": "^11.7.0",
+    "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {
+    "array-uniq": "^1.0.3",
+    "del": "^3.0.0",
+    "event-stream": "^3.3.4",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^3.1.0",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-header": "^2.0.5",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-istanbul": "^1.1.3",
+    "gulp-jasmine": "^3.0.0",
+    "gulp-jshint": "^2.1.0",
+    "gulp-jsonminify": "^1.1.0",
+    "gulp-replace": "^0.6.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-zip": "^4.1.0",
+    "jquery": "^3.3.1",
+    "jsdom": "^11.7.0",
+    "jshint": "^2.9.5"
+  },
+  "keywords": [
+    "Selenium",
+    "PageObject",
+    "Model",
+    "Page",
+    "Object",
+    "POM",
+    "Generator",
+    "Agile",
+    "Testing",
+    "Protractor",
+    "Java",
+    "C#",
+    "RobotFramework",
+    "Robot",
+    "Framework",
+    "PageFactory"
+  ],
+  "author": "Nhat Nguyen <hangnhat57@gmail.com>",
+  "bin": {
+    "n8n": "./bin/n8n.js"
+  },
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "http://n8n.asia",
+  "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "test": "gulp common:test && gulp chrome:js:test",
+    "build": "gulp default"
+  }
+}
