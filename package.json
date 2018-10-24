@@ -1,6 +1,6 @@
 {
   "name": "protractor-pom-generator",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "description": "A small tool use for generating page object model for protractor.",
   "dependencies": {
     "argparse": "^1.0.10",
