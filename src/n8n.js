@@ -118,8 +118,7 @@ console.log("Start generating page ......");
 
 
 if(args.url && args.file){
-    throw new Error(`Please choose only one parameter : file or url
-    This stupid tool can't generate more than a page at once`);
+    throw new Error("Please choose only one parameter : file or url. This stupid tool can not generate more than a page at once");
 }
 else if(args.url){
     JSDOM.JSDOM.fromURL(args.url,options).then(dom => {
@@ -127,11 +126,10 @@ else if(args.url){
     });
 }
 else if(args.file){
-    JSDOM.JSDOM.fromFile(args.url,options).then(dom => {
+    JSDOM.JSDOM.fromFile(args.file,options).then(dom => {
         generatePage(dom);
     });
 }
 else{
-    throw new Error(`How can I know what page you're gonna generate? 
-    Please input your source by url with -u || --url or from file with -f || --file`);
+    throw new Error("How can I know what page youre gonna generate? Please input your source by url or from file ");
 }
