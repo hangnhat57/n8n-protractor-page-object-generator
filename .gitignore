@@ -1,7 +1,6 @@
-build
-builds
-dist
 lcov
 node_modules
 pages
+bin
+
 
