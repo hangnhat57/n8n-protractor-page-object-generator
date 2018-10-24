@@ -1,1 +1,7 @@
-{ "presets"  : ["es2015"] }
+{ 
+    "presets"  : ["es2015"] ,
+    "ignore": [
+        "src/libs/treewalker-polyfill-0.2.0.js",
+        "jquery-3.3.1.js"
+      ]
+}

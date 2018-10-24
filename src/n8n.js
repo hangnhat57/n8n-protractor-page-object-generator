@@ -3,6 +3,7 @@ require('babel-register');
 var ArgumentParser = require('argparse').ArgumentParser;
 var path = require('path');
 var rootDir = path.join(__dirname, '..');
+var libsDir = path.join(__dirname,'libs');
 var packagejson = require(path.join(rootDir, 'package.json'));
 var parser = new ArgumentParser({
     description: packagejson.description,
@@ -12,7 +13,7 @@ const JSDON = require("jsdom");
 
 parser.addArgument(['-t', '--target'], {
     choices: ['cs', 'java', 'robot','js'],
-    help: 'Shiba target',
+    help: 'Language target',
     required: true
 });
 parser.addArgument(['-n', '--name'], {
@@ -32,13 +33,12 @@ var args = parser.parseArgs();
 var execDir = process.cwd();
 var fs = require('fs');
 var mkdirp = require('mkdirp');
-var commonDir = path.join(rootDir, 'src', 'common');
-var common = require("../src/common/common").Common;
-var generator = require("../src/common/generator").Generator;
+var common = require(path.join(libsDir,'common.js')).Common;
+var generator = require(path.join(libsDir,'generator.js')).Generator;
 
 
 global.Handlebars = require('handlebars');
-require(path.join(commonDir, 'helpers.js'));
+require(path.join(libsDir, 'helpers.js'));
 
 var overrides = {
     model: {
@@ -77,9 +77,9 @@ const virtualConsole = new JSDON.VirtualConsole();
 let options={ 
         runScripts: "dangerously", 
         virtualConsole:virtualConsole,
- //   pretendToBeVisual: true,
-        FetchExternalResources: ['../libs/treewalker-polyfill-0.2.0.js'],
-        ProcessExternalResources: ['../libs/treewalker-polyfill-0.2.0.js'],
+        pretendToBeVisual: true,
+        FetchExternalResources: [path.join(libsDir,'treewalker-polyfill-0.2.0.js')],
+        ProcessExternalResources: [path.join(libsDir,'treewalker-polyfill-0.2.0.js')],
         resources: "usable", // need this to execute scripts
         includeNodeLocations: true
     };

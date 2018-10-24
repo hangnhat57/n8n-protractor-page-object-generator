@@ -1,11 +1,13 @@
 {
   "name": "protractor-pom-generator",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "A small tool use for generating page object model for protractor.",
   "dependencies": {
     "argparse": "^1.0.10",
+    "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",
+    "handlebars": "^4.0.12",
     "jsdom": "^11.7.0",
     "mkdirp": "^0.5.1"
   },
@@ -56,13 +58,12 @@
     "url": ""
   },
   "homepage": "http://n8n.asia",
-  "license": "AGPL-3.0",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": ""
   },
   "scripts": {
-    "test": "gulp common:test && gulp chrome:js:test",
-    "build": "gulp default"
+    "build": "babel src/ -d bin/"
   }
 }
