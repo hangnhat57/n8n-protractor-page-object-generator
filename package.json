@@ -1,17 +1,17 @@
 {
   "name": "protractor-pom-generator",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A small tool use for generating page object model for protractor.",
   "dependencies": {
     "argparse": "^1.0.10",
-    "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-register": "^6.26.0",
     "handlebars": "^4.0.12",
     "jsdom": "^11.7.0",
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
     "array-uniq": "^1.0.3",
     "del": "^3.0.0",
     "event-stream": "^3.3.4",
@@ -29,16 +29,11 @@
     "gulp-uglify": "^3.0.0",
     "gulp-zip": "^4.1.0",
     "jquery": "^3.3.1",
-    "jsdom": "^11.7.0",
     "jshint": "^2.9.5"
   },
   "keywords": [
     "Selenium",
     "PageObject",
-    "Model",
-    "Page",
-    "Object",
-    "POM",
     "Generator",
     "Agile",
     "Testing",
@@ -46,22 +41,21 @@
     "Java",
     "C#",
     "RobotFramework",
-    "Robot",
-    "Framework",
-    "PageFactory"
+    "NodeJS",
+    "Automation"
   ],
   "author": "Nhat Nguyen <hangnhat57@gmail.com>",
   "bin": {
     "n8n": "./bin/n8n.js"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/hangnhat57/n8n-protractor-page-object-generator/issues"
   },
   "homepage": "http://n8n.asia",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/hangnhat57/n8n-protractor-page-object-generator"
   },
   "scripts": {
     "build": "babel src/ -d bin/"

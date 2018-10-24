@@ -9,9 +9,9 @@ var parser = new ArgumentParser({
     description: packagejson.description,
     version: packagejson.version
 });
-const JSDON = require("jsdom");
+const JSDOM = require("jsdom");
 
-parser.addArgument(['-t', '--target'], {
+parser.addArgument(['-l', '--language'], {
     choices: ['cs', 'java', 'robot','js'],
     help: 'Language target',
     required: true
@@ -26,7 +26,11 @@ parser.addArgument(['-d', '--destination'], {
 });
 parser.addArgument(['-u', '--url'], {
     help: 'Source url',
-    required: true
+    required: false
+});
+parser.addArgument(['-f', '--file'], {
+    help: 'Path to source file',
+    required: false
 });
 
 var args = parser.parseArgs();
@@ -48,9 +52,9 @@ var overrides = {
 };
 
 var paths = {
-    config: path.join(rootDir, 'configs', args.target + '.json'),
-    target: path.join(execDir,args.destination || 'pages', args.name + '.' + args.target),
-    template: path.join(rootDir, 'templates', args.target + '.handlebars')
+    config: path.join(rootDir, 'configs', args.language + '.json'),
+    target: path.join(execDir,args.destination || 'pages', args.name + '.' + args.language),
+    template: path.join(rootDir, 'templates', args.language + '.handlebars')
 };
 
 var targets = {
@@ -73,19 +77,7 @@ function getFileContent(path) {
     }
     return response;
 }
-const virtualConsole = new JSDON.VirtualConsole();
-let options={ 
-        runScripts: "dangerously", 
-        virtualConsole:virtualConsole,
-        pretendToBeVisual: true,
-        FetchExternalResources: [path.join(libsDir,'treewalker-polyfill-0.2.0.js')],
-        ProcessExternalResources: [path.join(libsDir,'treewalker-polyfill-0.2.0.js')],
-        resources: "usable", // need this to execute scripts
-        includeNodeLocations: true
-    };
-
-console.log("Start generating page ......");
-JSDON.JSDOM.fromURL(args.url,options).then(dom => {
+function generatePage(dom){
     try {
         let _generator = new generator();
         let _common = new common();
@@ -106,4 +98,40 @@ JSDON.JSDOM.fromURL(args.url,options).then(dom => {
     }finally{
         dom.window.close();
     }
-});
+}
+const virtualConsole = new JSDOM.VirtualConsole();
+let scripts = [
+    path.join(libsDir,'jquery-3.3.1.js'),
+    path.join(libsDir,'treewalker-polyfill-0.2.0.js')
+    ];
+let options={ 
+        runScripts: "dangerously", 
+        virtualConsole:virtualConsole,
+        pretendToBeVisual: true,
+        FetchExternalResources: scripts,
+        ProcessExternalResources: scripts,
+        resources: "usable", // need this to execute scripts
+    };
+
+console.log("Start generating page ......");
+
+
+
+if(args.url && args.file){
+    throw new Error(`Please choose only one parameter : file or url
+    This stupid tool can't generate more than a page at once`);
+}
+else if(args.url){
+    JSDOM.JSDOM.fromURL(args.url,options).then(dom => {
+        generatePage(dom);
+    });
+}
+else if(args.file){
+    JSDOM.JSDOM.fromFile(args.url,options).then(dom => {
+        generatePage(dom);
+    });
+}
+else{
+    throw new Error(`How can I know what page you're gonna generate? 
+    Please input your source by url with -u || --url or from file with -f || --file`);
+}
