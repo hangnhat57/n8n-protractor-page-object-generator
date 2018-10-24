@@ -1,17 +1,17 @@
 {
   "name": "protractor-pom-generator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A small tool use for generating page object model for protractor.",
   "dependencies": {
     "argparse": "^1.0.10",
     "handlebars": "^4.0.12",
     "jsdom": "^11.7.0",
-    "mkdirp": "^0.5.1"
-  },
-  "devDependencies": {
+    "mkdirp": "^0.5.1",
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
-    "babel-register": "^6.26.0",
+    "babel-register": "^6.26.0"
+  },
+  "devDependencies": {
     "array-uniq": "^1.0.3",
     "del": "^3.0.0",
     "event-stream": "^3.3.4",
